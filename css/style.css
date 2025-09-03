@@ -2,17 +2,10 @@ body {
   font-family: "Space Grotesk", sans-serif;
 }
 
-.menu-icon {
-  display: none;
-  cursor: pointer;
-  font-size: 20px;
-}
-
-#menu-toggle {
-  display: none;
-}
+/* navbar */
 
 .navbar {
+  position: relative;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -32,12 +25,24 @@ body {
   margin-right: 10px;
 }
 
+.menu-icon {
+  display: none;
+  cursor: pointer;
+  font-size: 24px;
+  user-select: none;
+}
+
+#menu-toggle {
+  display: none;
+}
+
 .nav-links {
   list-style: none;
   display: flex;
   margin: 10px;
   padding: 10px;
   cursor: pointer;
+  z-index: 1000;
 }
 
 .nav-links li {
@@ -57,14 +62,15 @@ body {
   border-radius: 10%;
 }
 
-/* responsive menu for mobile devices */
+/* responsive for mobile */
+
 @media (max-width: 600px) {
   .menu-icon {
     display: block;
   }
 
   .nav-links {
-    display: none;
+    display: flex;
     flex-direction: column;
     width: 100%;
     background-color: #ffffff;
@@ -73,14 +79,106 @@ body {
     left: 0;
     padding: 10px 0;
     border-top: 1px solid #ccc;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
   }
 
   .nav-links li {
     margin: 10px 0;
     text-align: center;
+    margin-left: 0;
+  }
+
+  #menu-toggle:checked ~ .nav-links {
+    max-height: 400px; /* ajusta se tiver mais itens */
   }
 }
 
-#menu-toggle:checked + .nav-links {
+/* initial content */
+
+.initial-content {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 60px 40px 0 40px;
+  background: #fff;
+}
+
+.initial-text {
+  flex: 1 1 0;
+  max-width: 570px;
+}
+
+.initial-text h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.initial-text p {
+  font-size: 1.2rem;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.contact-button {
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #ff9900;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 12px;
+  margin-bottom: 0;
+  text-align: left;
+}
+
+.contact-button:hover {
+  background-color: #000000;
+  transform: scale(0.2s);
+}
+
+.initial-photo {
+  flex: 1 1 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 280px;
+}
+
+.initial-photo img {
+  max-width: 440px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+/* responsive for mobile */
+
+@media (max-width: 950px) {
+  .initial-content {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 20px;
+    padding: 40px 10px 0 10px;
+  }
+  .initial-text {
+    max-width: 100%;
+  }
+  .initial-text h1,
+  .initial-text p {
+    text-align: center;
+  }
+  .contact-button {
+    text-align: center;
+    margin-left: 0;
+  }
+  .initial-photo img {
+    max-width: 100%;
+  }
 }
